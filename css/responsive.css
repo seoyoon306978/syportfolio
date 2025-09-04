@@ -368,3 +368,19 @@
         display: none;
     }
 }
+
+@media screen and (max-width : 375px) {
+    .intro .container:after {
+        content: '이거저거\A 읽고 보고\A 디자인하고\A 그림그리고 코딩합니다 \A 좋아하는 거 엄청\A 많습니다!';
+        font-family: "KoPubBatang";
+        color: #fff;
+        font-size: 4rem !important;
+        line-height: 105% !important;
+        width: 90%;
+        margin: 0 auto;
+        white-space: pre-line;
+        display: block;
+        margin-top: -80px;
+        /* \A */
+    }
+}
