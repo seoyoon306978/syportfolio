@@ -1,0 +1,1446 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: url('../mouse.png') 2 4, auto;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999999999999999999999999;
+}
+
+
+/* 공통 */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.clear::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+body {
+    background-color: #181818;
+    overflow-x: hidden;
+}
+
+/* 드래그 블럭 */
+html::selection {
+    background: #FF3B3B;
+    color: #fff;
+}
+
+/* ----- 스크롤바 ----- */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #FF3B3B;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #181818;
+}
+
+/* 폰트 */
+@font-face {
+    font-family: "HAN-YONG-UN";
+    src: url(../font/독립서체_한용운_GS.ttf);
+}
+
+@font-face {
+    font-family: "addong";
+    src: url(../font/온글잎\ 아똥체.ttf);
+}
+
+@font-face {
+    font-family: "KoPubBatang";
+    src: url(../font/KoPub\ Batang\ Medium.ttf);
+}
+
+@font-face {
+    font-family: "Boldonse";
+    src: url(../font/Boldonse-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Archivo-SemiBold";
+    src: url(../font/Archivo-SemiBold.woff);
+}
+
+@font-face {
+    font-family: "Pretendard-ExtraBold";
+    src: url(../font/Pretendard/Pretendard-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: "Pretendard-Bold";
+    src: url(../font/Pretendard/Pretendard-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Pretendard-Medium";
+    src: url(../font/Pretendard/Pretendard-Medium.ttf);
+}
+
+@font-face {
+    font-family: "Pretendard-Regular";
+    src: url(../font/Pretendard/Pretendard-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Pretendard-Light";
+    src: url(../font/Pretendard/Pretendard-Light.ttf);
+}
+
+@font-face {
+    font-family: "Beach-Ball";
+    src: url(../font/Beach-Ball.ttf);
+}
+
+/* 헤더 */
+
+.hamburger {
+    background: url('../images/A-header/burger-bar.png') no-repeat center/contain;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    z-index: 99999999;
+    position: absolute;
+    top: 3px;
+    right: 5rem;
+    opacity: 0;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    padding: 0.5rem 2rem;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    background-color: #181818;
+    background-color: rgba(0, 0, 0, 0);
+    transition: all 1s;
+    transform: translateY(-100%);
+}
+
+header.on {
+    transform: translateY(0);
+    background-color: rgba(0, 0, 0, 1);
+    backdrop-filter: blur(10px);
+}
+
+header .container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav ul {
+    display: flex;
+}
+
+header nav ul.ham {
+    margin-top: 20px;
+}
+
+header nav ul li {
+    padding: 0 30px;
+}
+
+button:hover {
+    cursor: url('../mouse_click.png') 2 4, auto;
+}
+
+header nav ul li:last-child {
+    padding-right: 0;
+}
+
+header nav ul li button {
+    padding-top: 9px;
+}
+
+header button {
+    font-family: "Pretendard-ExtraBold";
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+
+header button span {
+    color: #FF4F3F;
+}
+
+header h1 button {
+    font-family: "Boldonse";
+    font-size: 1.5rem;
+}
+
+header nav button {
+    font-size: 1.7rem;
+}
+
+/* 메일버튼 */
+
+.mail {
+    width: 50px;
+    height: 50px;
+    transform: translate(-13px, 3px);
+    background: url('../images/선메일.png') no-repeat center/contain;
+}
+
+.mail:hover {
+    cursor: url('../mouse_click.png') 2 4, auto;
+}
+
+.mail.on {
+    width: 50px;
+    height: 50px;
+    transform: translate(-13px, 3px);
+    background: url('../images/send.png') no-repeat center/80%;
+}
+
+/* 팝업창 */
+.mail-popup {
+    display: none;
+    width: 300px;
+    height: 400px;
+    background-color: #FF4F3F;
+    z-index: 999;
+    position: fixed;
+    top: 90px;
+    right: 40px;
+    border-radius: 50px;
+    cursor: url('../mouse_b.png') 2 4, auto;
+}
+
+.close-icon {
+    width: 30px;
+    height: 30px;
+    background: url('../images/A-header/x.svg') no-repeat center/contain;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+}
+
+.mail-popup h5 {
+    font-size: 1.5rem;
+    font-family: "Boldonse";
+    letter-spacing: 3px;
+    position: absolute;
+    top: 70px;
+    left: 30px;
+    line-height: 35px;
+    cursor: url('../mouse_b.png') 2 4, auto;
+}
+
+label {
+    font-family: "addong";
+    font-size: 1.3rem;
+    float: left;
+    color: #fff;
+    cursor: url('../mouse_b.png') 2 4, auto;
+}
+
+input {
+    float: left;
+    width: 73%;
+    height: 25px;
+    font-size: 1.2rem;
+    outline: none;
+    border: none;
+    padding: 1px 5px;
+    background-color: #eee;
+    cursor: url('../mouse_b.png') 2 4, auto;
+}
+
+textarea {
+    height: 70px;
+    resize: none;
+    font-size: 1.2rem;
+    outline: none;
+    border: none;
+    margin-top: 6px;
+    margin-bottom: 5px;
+    background-color: #eee;
+    cursor: url('../mouse_b.png') 2 4, auto;
+}
+
+.popup {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    transform: translate(0, 170px);
+    cursor: url('../mouse_b.png') 2 4, auto;
+}
+
+.inputbox {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    align-items: center;
+    cursor: url('../mouse_b.png') 2 4, auto;
+}
+
+.popup button {
+    font-family: "Boldonse";
+    width: 80px;
+    height: 30px;
+    color: #FF4F3F;
+    background-color: #191919;
+    border: none;
+    border-radius: 50px;
+    margin: 0 auto;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.popup button:hover {
+    background-color: #fff;
+    cursor: url('../mouse_click.png') 2 4, auto;
+    cursor: url('../mouse_b.png') 2 4, auto;
+}
+
+/* 메인 */
+.intro {
+    width: 100%;
+    height: 100vh;
+    background: #191919 url('../images/mainlogo.png') no-repeat bottom/96%;
+    background-position-y: 167px;
+    display: flex;
+    color: #fff;
+    padding: 1rem 3rem 0;
+}
+
+.intro .container {
+    width: 100%;
+}
+
+.intro .container img {
+    width: 95%;
+    margin: 0 45px 0px;
+}
+
+.intro h4 {
+    font-size: 2rem;
+}
+
+.intro h2 {
+    font-size: 3.5rem;
+    margin: 2rem 0;
+    letter-spacing: 3px;
+}
+
+.intro .maintext {
+    position: relative;
+    font-family: "KoPubBatang";
+    font-weight: 200;
+    line-height: 101px;
+    font-size: 5.75rem;
+}
+
+.intro .maintext strong {
+    position: relative;
+    display: inline-block;
+    color: #FF4F3F;
+    margin-left: 20px;
+    margin-right: 8px;
+    padding: 5px 6px 0;
+    z-index: 1;
+}
+
+.intro .top2 {
+    letter-spacing: -2.1px;
+    background-color: #181818;
+}
+
+/* 디자인네모 */
+
+.intro .maintext strong:first-child:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('../images/B-main/디자인네모.png') no-repeat center/contain;
+    transform-origin: left top;
+    opacity: 0;
+    animation: designbox 1s 2s ease-out forwards;
+    z-index: -1;
+}
+
+@keyframes designbox {
+    0% {
+        opacity: 1;
+        transform: scaleX(0) scaleY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scaleX(1) scaleY(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scaleX(1) scaleY(1);
+    }
+}
+
+
+.intro .maintext strong:first-child {
+    animation: designboxdeg 1s 4s forwards;
+
+}
+
+@keyframes designboxdeg {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(-10deg);
+    }
+}
+
+
+/* 코딩네모 */
+
+.intro .maintext strong:last-child {
+    padding-top: 0;
+    background-color: #fff;
+}
+
+.intro .maintext strong span::after {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 5.5rem;
+    background-color: #FF3B3B;
+    animation: blink 0.7s infinite;
+    translate: 0 15%;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.intro .top {
+    letter-spacing: -2%;
+}
+
+.intro .top2 {
+    letter-spacing: -3%;
+}
+
+.intro .left {
+    float: left;
+}
+
+.intro .right {
+    text-align: right;
+}
+
+.intro .red-text {
+    font-family: "Boldonse";
+    font-size: 1.8rem;
+    letter-spacing: 2%;
+    color: #FF4F3F;
+    position: relative;
+    top: -25%;
+    left: 49%;
+    transform: rotate(10deg);
+    display: inline-block;
+}
+
+/* 빨간띠 */
+
+.red {
+    font-family: "Pretendard-Light";
+    font-size: clamp(1rem, 2vw, 1.6rem);
+    width: 100%;
+    height: auto;
+    background-color: #FF4F3F;
+    text-align: center;
+    align-items: center;
+    color: #fff;
+    line-height: 1.6;
+    padding: 3rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: url('../mouse_b.png') 2 4, auto;
+}
+
+.red strong {
+    position: absolute;
+    display: inline-block;
+    top: 55%;
+    left: 44.5vw;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    font-family: "addong";
+    font-size: clamp(2.5rem, 3.125vw, 4rem);
+    cursor: url('../mouse_b.png') 2 4, auto;
+}
+
+.red p {
+    cursor: url('../mouse_b.png') 2 4, auto;
+}
+
+/* 섹션들 */
+
+section {
+    padding: 4.5rem 0;
+}
+
+/* 프로필페이지 */
+.profile {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #191919;
+    color: #fff;
+    padding: 120px 0 80px;
+    overflow-x: hidden;
+}
+
+.profile .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px 60px;
+    align-items: start;
+    max-width: 1400px;
+    padding: 0 40px;
+}
+
+.profile .drop {
+    float: left;
+    margin-right: 90px;
+    min-height: 350px;
+}
+
+.profile .drop:nth-child(4) {
+    margin-right: 160px !important;
+}
+
+.profile .drop:nth-child(5) {
+    margin-right: 160px !important;
+}
+
+.profile .drop:nth-child(3),
+.profile .drop:nth-child(6) {
+    margin-right: 0px;
+}
+
+.profile-title {
+    font-family: "Boldonse";
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: #FF3B3B;
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+
+.profile-content {
+    font-family: "Pretendard-Bold";
+    line-height: 25px;
+    font-size: 1.2rem;
+}
+
+.profile-content-sub {
+    font-family: "Pretendard-Light";
+    font-size: 1.1rem;
+    opacity: 0.6;
+    margin-bottom: 28px;
+}
+
+.edu {
+    transform: translate(40px, -20px);
+    transform: translate(-2px);
+}
+
+.pro {
+    font-family: "Pretendard-Light";
+    font-size: 1.1rem;
+}
+
+.pro .profile-content {
+    font-size: 1.6rem;
+}
+
+.pro p {
+    line-height: 28px;
+}
+
+.pro p:nth-child(3) {
+    margin-top: 10px;
+}
+
+.pro p:last-child {
+    margin-top: 20px;
+}
+
+.pro strong {
+    font-family: "Pretendard-Bold";
+}
+
+.skil {
+    width: 300px;
+}
+
+.skills-title {
+    margin-bottom: 25px;
+}
+
+.skills-title p {
+    font-family: "Pretendard-Bold";
+    font-size: 1.2rem;
+}
+
+.skills-title img {
+    width: 60px;
+    height: 60px;
+    margin-right: 6px;
+}
+
+.lic-inner {
+    width: 460px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profile .face {
+    background-color: #fff;
+    border-radius: 50px;
+}
+
+.profile .face img {
+    width: 230px;
+    height: 340px;
+    margin-left: 40px;
+    margin-right: 20px;
+}
+
+.memo .highlight {
+    height: 18px;
+    background-color: #FCFF31;
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+    z-index: 9;
+    position: absolute;
+    transform: rotate(-7deg);
+    transform-origin: left center;
+}
+
+.memo .highlight:nth-child(4) {
+    width: 0px;
+    bottom: 63px;
+    left: 45px;
+    transition: all 0.5s;
+}
+
+.memo:hover .highlight:nth-child(4) {
+    width: 84px;
+}
+
+.memo .highlight:last-child {
+    width: 0px;
+    bottom: 74px;
+    left: 157px;
+    transition: all 0.5s 0.3s;
+}
+
+.memo:hover .highlight:last-child {
+    width: 90px;
+}
+
+.profile .memo {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin-top: -30px;
+}
+
+.profile .memo img:nth-child(2) {
+    position: absolute;
+    top: 100px;
+    left: 35px;
+}
+
+.profile .memo img:nth-child(3) {
+    position: absolute;
+    bottom: 33px;
+    left: 40px;
+}
+
+
+/* 일러스트 */
+.sunset img {
+    width: 100vw;
+    background-color: #191919;
+    margin-bottom: 50px;
+    max-width: 100vw;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* 프로젝트 카드 */
+
+.card-inner {
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-inner strong {
+    font-size: 2.6rem;
+}
+
+.card-inner span {
+    font-size: 0.9rem;
+    font-family: "Pretendard-Light";
+}
+
+.card-inner p:nth-child(3) {
+    font-size: 1rem !important;
+}
+
+.gosite {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 55px;
+}
+
+.gosite a {
+    text-align: center;
+    width: 100px;
+    display: inline-block;
+    padding: 2px 10px 4px;
+    border: 1px solid #fff;
+    margin: 5px;
+    background-color: #191919;
+    transition: all 0.5s;
+}
+
+.gosite a:hover {
+    background-color: #fff;
+    color: #191919;
+    cursor: url('../mouse_click.png') 2 4, auto;
+    transform: translate(10px, 0);
+}
+
+.left-t {
+    z-index: -1;
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: -5px;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-right: 10px solid #fff;
+    border-left: 10px solid transparent;
+}
+
+.gosite li:nth-child(2) .left-t {
+    top: 52px;
+    left: -5px;
+}
+
+.content-card:nth-child(3) .gosite li:nth-child(2) .left-t {
+    top: 11px;
+    left: -5px;
+}
+
+.gosite li:nth-child(3) .left-t {
+    top: 94px;
+    left: -5px;
+}
+
+.content-card:nth-child(3) .gosite li:nth-child(3) .left-t {
+    top: 52px;
+    left: -5px;
+}
+
+.content-card:nth-child(4) .gosite li:nth-child(1) .left-t {
+    top: 11px;
+    left: -5px;
+}
+
+.content-card ul li {
+    width: 130px;
+    position: static;
+    bottom: 10px;
+}
+
+.content-card {
+    width: 48%;
+    font-family: "Archivo-SemiBold";
+    float: left;
+    display: flex;
+    margin-right: 2rem;
+    position: relative;
+    flex: 1 1 calc(48%);
+    min-width: 300px;
+    display: flex;
+}
+
+.content-card:nth-child(2n) {
+    margin-right: 0;
+}
+
+.content-card:last-child {
+    margin-right: 0;
+}
+
+.myimg {
+    width: 400px;
+    height: 550px;
+    margin-right: 30px;
+}
+
+.gaze {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.gaze .percent {
+    font-size: 1.4rem;
+    opacity: 0.6;
+    letter-spacing: -2%;
+}
+
+.percent-line {
+    width: 150px;
+    height: 4px;
+    margin: 0 10px;
+    background-color: #FF3B3B;
+}
+
+.card-inner .tool {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.tool-block img {
+    width: 50px;
+    height: 50px;
+    margin-right: 6px;
+    opacity: 0.7;
+}
+
+.tool-block {
+    display: flex;
+}
+
+.card-inner p {
+    font-size: 1.3rem !important;
+    font-family: "Archivo-SemiBold";
+    line-height: 38px;
+}
+
+.card-inner p:nth-child(3) {
+    font-size: 1rem;
+}
+
+.cardbox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1600px;
+    margin: 3rem auto 0;
+}
+
+/* 디자인+코딩 */
+
+.publishing .container {
+    width: 85%;
+}
+
+.container .title h4 {
+    font-family: "Beach-Ball";
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #FF3B3B;
+    font-size: 6rem;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.container .title h2 {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 3rem;
+}
+
+.publishing {
+    width: 100%;
+    background-color: #191919;
+    color: #fff;
+}
+
+.content-card:nth-child(2n) {
+    margin-right: 0;
+}
+
+/* 각 카드 편집 */
+.content-card:nth-child(1) .percent-line {
+    background: linear-gradient(to right, #FF3B3B 34%, gray 34% 100%);
+}
+
+.content-card:nth-child(1) .myimg {
+    background: url('../images/B-main/차연.png') no-repeat center / contain;
+}
+
+.content-card:nth-child(2) .percent-line {
+    background: linear-gradient(to right, #FF3B3B 34%, gray 34% 100%);
+}
+
+.content-card:nth-child(2) .myimg {
+    background: url('../images/B-main/대구관광.png') no-repeat center / contain;
+}
+
+.content-card:nth-child(3) .myimg {
+    background: url('../images/B-main/전통소리.png') no-repeat center / contain;
+}
+
+.content-card:nth-child(4) .myimg {
+    background: url('../images/B-main/어서어서.png') no-repeat center / contain;
+}
+
+/* 클론코딩 */
+.coding {
+    width: 100%;
+    height: auto;
+    background-color: #191919;
+    display: flex;
+    color: #fff;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    transition: all 1.2s;
+    padding-top: 0;
+}
+
+.coding .box:nth-child(1) .percent-line {
+    background: linear-gradient(to right, #FF3B3B 100%);
+}
+
+.coding .box:nth-child(2) .percent-line {
+    background: linear-gradient(to right, #FF3B3B 50%, gray 50% 100%);
+}
+
+/* --- glass 카드 --- */
+
+section {
+    overflow: hidden;
+    padding-top: 3em;
+}
+
+.coding .card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px;
+}
+
+.coding .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 0 0 3em;
+    margin-top: 3em;
+
+    .box {
+        position: relative;
+        width: 40rem;
+        height: 45rem;
+        border-radius: 0.625rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s;
+
+        .imgBox {
+            position: absolute;
+            inset: 0;
+            border-radius: 0.75rem;
+            border: 0.25rem solid rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: 0.5s;
+                border-radius: 0.625rem;
+            }
+        }
+
+        .link-button {
+            display: flex;
+        }
+
+        .link-button a {
+            border: 1.5px solid #fff;
+            border-radius: 50px;
+            width: 120px;
+            padding: 5px 15px;
+            text-align: center;
+            margin: 25px 3% 0;
+        }
+
+        .link-button a:hover {
+            background-color: #FF4F3F;
+            border: 1.5px solid #FF4F3F;
+            cursor: url('../mouse_click.png') 2 4, auto;
+        }
+
+        .glass {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(#fff2, transparent);
+            border: 0.063rem solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0.938rem 0.938rem rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(0.938rem);
+            border-radius: 0.625rem;
+            overflow: hidden;
+            scale: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.5s;
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &:before {
+                position: absolute;
+                content: "";
+                bottom: 0;
+                width: 100%;
+                height: 2.5rem;
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            .tool-block {
+                margin-top: 10px;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+                color: #fff;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                text-align: center;
+                line-height: 2rem;
+                font-weight: 500;
+            }
+
+            span {
+                font-size: 1rem;
+                font-weight: 400;
+                letter-spacing: -0.1px;
+            }
+
+            ul {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+
+                a {
+                    color: #fff8;
+                    font-size: 1.25rem;
+                    scale: 0;
+                    transition: 0.25s;
+                    transition-delay: scale calc(0.2s * var(--i));
+
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        &:hover .imgBox img {
+            opacity: 0.5;
+        }
+
+        &:hover {
+            transform: rotate(-15deg);
+        }
+
+        &:hover .glass {
+            transform: rotate(20deg);
+            scale: 1;
+            opacity: 1;
+        }
+
+        &:hover ul a {
+            scale: 1;
+        }
+    }
+}
+
+
+/* 브랜딩 */
+.branding .title {
+    margin-bottom: 80px;
+}
+
+.branding {
+    width: 100%;
+    height: auto;
+    background-color: #191919;
+    color: #fff;
+    padding: 50px 20px;
+    display: flex;
+}
+
+.branding .title {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.brand img {
+    width: 80%;
+    margin-top: 2rem;
+    display: block;
+    margin: 0 auto;
+}
+
+.brand-link {
+    font-size: 1.5rem;
+    margin: 1rem;
+    display: block;
+    text-align: center;
+}
+
+.brand-link:hover {
+    color: #FF4F3F;
+}
+
+
+/* 디자인 */
+
+.design {
+    width: 100%;
+    height: auto;
+    background-color: #191919;
+    display: flex;
+    color: #fff;
+}
+
+
+.title h2 span {
+    font-size: 1rem;
+    margin-right: 2px;
+}
+
+.design .title h2 {
+    margin-top: 30px;
+    line-height: 50px;
+}
+
+#design .container {
+    text-align-last: left;
+    padding-left: 160px;
+    width: 30%;
+}
+
+.design:focus {
+    outline: none !important;
+}
+
+.photo-gallery {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #191919;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    cursor: url('../mouse_click.png') 2 4, auto;
+}
+
+/* etc */
+
+.etc {
+    position: relative;
+    height: 600px;
+}
+
+.etc-inner {
+    display: flex;
+    justify-content: center;
+    /* 가운데 정렬 */
+    align-items: center;
+    /* 세로 중앙 */
+    gap: 4rem;
+    /* 카드와 버튼 사이 간격 */
+    position: relative;
+}
+
+/* 버튼들을 감싸는 컨테이너 */
+.gobuttons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* 각 버튼 스타일 */
+.gobutton {
+    width: 200px;
+    height: 60px;
+    background-color: var(--yellow, #dd8);
+    background-image:
+        linear-gradient(transparent 0,
+            transparent calc(100% - 0.1rem),
+            var(--blue, #00f3) calc(100% - 0.1rem),
+            var(--blue, #00f3) 100%),
+        linear-gradient(to right,
+            transparent 0,
+            transparent 2rem,
+            var(--red, #f003) 2rem,
+            var(--red, 2.1rem),
+            transparent 2.1rem,
+            transparent 100%);
+    background-size: 100% 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Neucha";
+    font-size: 1.2em;
+    color: #334;
+    letter-spacing: 0.05ch;
+    border-radius: 0.2rem;
+    box-shadow: 0 0.5rem 1rem 0.2rem #0003;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+.gobutton:hover {
+    transform: translateY(-3px);
+    cursor: url('../mouse_click.png') 2 4, auto;
+}
+
+
+/* 겹쳐지는 인덱스 */
+
+.notifications-stack {
+    position: absolute;
+    top: 12rem;
+    left: 6rem;
+}
+
+.notification {
+    --line-width: 0.1rem;
+    --red: #f003;
+    --blue: #00f3;
+    --yellow: #dd8;
+    user-select: none;
+    font-family: "Neucha", cursive;
+    letter-spacing: 0.1ch;
+    position: absolute;
+    min-height: 4rem;
+    width: 20rem;
+    top: 0;
+    left: -50rem;
+    rotate: -10deg;
+    background-image: linear-gradient(transparent 0,
+            transparent calc(100% - var(--line-width)),
+            var(--blue) calc(100% - var(--line-width)),
+            var(--blue) 100%),
+        linear-gradient(to right,
+            transparent 0,
+            transparent 2rem,
+            var(--red) 2rem,
+            var(--red) calc(2rem + var(--line-width)),
+            transparent calc(2rem + var(--line-width)),
+            transparent 100%);
+    background-size: 100% 1rem;
+    background-color: var(--yellow);
+    color: #334;
+    font-size: 1.5em;
+    padding: 0.6rem 3rem 0.6rem 5rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0.2rem;
+    animation: cubic-bezier(0, 1, 1, 1) slideIn 0.4s forwards;
+}
+
+.notification::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 1;
+    box-shadow: 0 0.5rem 1rem 0.2rem #0003;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.notification:nth-last-child(-n + 7)::before {
+    opacity: 1;
+}
+
+.notification::after {
+    content: "X";
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: -1rem;
+    translate: -50% -50%;
+    transition: left 0.2s ease-in-out, opacity 0.1s ease-in-out;
+    opacity: 0;
+}
+
+.notification:nth-last-child(1) {
+    cursor: url('../mouse_click.png') 2 4, auto;
+}
+
+.notification:nth-last-child(1):hover::after {
+    left: 1rem;
+    opacity: 1;
+    transition: left 0.2s ease-in-out, opacity 0.1s 0.1s ease-in-out;
+}
+
+.notification.remove {
+    animation: cubic-bezier(0, 1, 1, 1) slideOut 0.4s forwards;
+}
+
+.notification:nth-child(7n) {
+    transform: rotate(-7deg) translate(9%, 6%);
+}
+
+.notification:nth-child(7n + 1) {
+    transform: rotate(2deg) translate(-1%, 4%);
+}
+
+.notification:nth-child(7n + 2) {
+    transform: rotate(5deg) translate(10%, -3%);
+}
+
+.notification:nth-child(7n + 3) {
+    transform: rotate(-3deg) translate(5%, 7%);
+}
+
+.notification:nth-child(7n + 4) {
+    transform: rotate(1deg) translate(-2%, 17%);
+}
+
+.notification:nth-child(7n + 5) {
+    transform: rotate(3deg) translate(5%, 4%);
+}
+
+.notification:nth-child(7n + 6) {
+    transform: rotate(-4deg) translate(-4%, -14%);
+}
+
+@keyframes slideIn {
+    to {
+        left: 0;
+        rotate: 0deg;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        left: 0;
+        rotate: 0deg;
+    }
+
+    to {
+        left: -50rem;
+        rotate: -10deg;
+    }
+}
+
+.notification {
+    background: linear-gradient(to right,
+            #ff6666 0%,
+            /* 빨강 시작 */
+            #ff6666 20%,
+            /* 빨강 30% */
+            #ffffff 20%,
+            /* 흰색 시작 */
+            #ffffff 100%
+            /* 흰색 끝 */
+        );
+    background-size: cover;
+    color: #334;
+}
+
+
+/*  etc.의 카드 겹쳐지는 애니메이션은 CodePen의 공개 예제(EaterUsr, 2016)를 참고하여 포폴 컨셉에 맞게 색상, 속도, 문구를 커스터마이징하였습니다.  
+원본: https://codepen.io/EaterUsr/pen/PwPoyjJ */

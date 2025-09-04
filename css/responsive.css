@@ -1,0 +1,370 @@
+@charset "utf-8";
+
+@media screen and (max-width : 1845px) {
+    .maintext {
+        display: none;
+    }
+
+    .intro .container:after {
+        content: '이거저거 읽고 보고 찍고 쓰고 만드는 저는 글쓰고 디자인하고 그림그리고 코딩합니다 생각하기 좋아하고요, 좋아하는 거 엄청 많습니다!';
+        font-family: "KoPubBatang";
+        color: #fff;
+        font-size: 5rem !important;
+        line-height: 105% !important;
+        width: 90%;
+        margin: 0 auto;
+        white-space: pre-line;
+        display: block;
+        margin-top: -100px;
+        /* \A */
+    }
+
+    .intro .container {
+        height: 100vh;
+    }
+
+    .intro {
+        width: 100%;
+        background: #191919 url('../images/mainlogo.png') no-repeat bottom/90%;
+        padding: 1rem 2rem;
+    }
+}
+
+
+@media (max-width: 1450px) {
+
+    /* 팝업창 */
+    .mail-popup {
+        top: 160px;
+    }
+
+    #design {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .design .container {
+        position: absolute;
+        padding-left: 0;
+    }
+
+    .design .container .title {
+        text-align: center;
+    }
+
+    .design .container .title h2 {
+        display: none;
+    }
+
+    .photo-gallery {
+        margin-top: 180px;
+    }
+
+    /* 헤더 줄 바뀌는 구간 */
+    header .container {
+        flex-direction: column;
+    }
+
+    header nav ul li:last-child {
+        padding-right: 30px;
+    }
+
+}
+
+@media screen and (max-width : 1200px) {
+
+    header nav ul li:first-child {
+        padding-left: 30px;
+    }
+
+    header nav ul {
+        flex-wrap: wrap;
+    }
+
+    .card>span {
+        display: none;
+    }
+
+    .design {
+        display: block;
+
+    }
+}
+
+@media screen and (max-width : 1010px) {
+
+    /* 헤더 폰트 작아지는 구간 */
+    html {
+        font-size: 13px;
+    }
+
+    .content-card {
+        flex: 1 1 100%;
+    }
+}
+
+
+@media screen and (max-width : 870px) {
+
+    /* 헤더 줄 바뀌는 구간 2 */
+    html {
+        font-size: 13px;
+    }
+
+}
+
+@media screen and (max-width : 860px) {
+
+    .intro .container:after {
+        font-size: 5rem !important;
+        line-height: 105% !important;
+        width: 95%;
+        margin: 0 auto;
+        white-space: pre-line;
+        display: block;
+        margin-top: -70px;
+        /* \A */
+    }
+
+    .hamburger {
+        opacity: 1;
+    }
+
+    header {
+        position: fixed;
+        transform: none !important;
+        background-color: #191919;
+    }
+
+    header .container,
+    header nav ul,
+    header.on {
+        display: block;
+        text-align: right;
+        width: 100vw;
+        padding-right: 3rem;
+    }
+
+    header .container h1 {
+        text-align-last: left;
+    }
+
+    .mail {
+        margin: 7px;
+        position: absolute;
+        right: 4rem;
+    }
+
+    header nav ul {
+        display: none;
+    }
+
+    header nav ul li:last-child {
+        margin-bottom: 70px;
+    }
+
+    .container .title h4 {
+        font-size: 5rem;
+    }
+
+    /* 프로필 */
+
+    .memo {
+        transform: translate(0, 20px);
+    }
+
+    .memo img:nth-child(1) {
+        width: 85%;
+        height: 85%;
+    }
+
+    .memo img:nth-child(2) {
+        width: 60%;
+        height: 60%;
+        top: 10px;
+        transform: translate(-10px, -100px);
+    }
+
+    .memo img:nth-child(3) {
+        width: 70%;
+        height: 70%;
+        top: 70px;
+        transform: translate(-10px);
+    }
+
+    .memo .highlight:nth-child(4) {
+        width: 0px;
+        bottom: 110px;
+        left: 35px;
+        transition: all 0.5s;
+    }
+
+    .memo:hover .highlight:nth-child(4) {
+        width: 80px;
+    }
+
+    .memo .highlight:last-child {
+        width: 0px;
+        bottom: 120px;
+        left: 140px;
+        transition: all 0.5s 0.3s;
+    }
+
+    .memo:hover .highlight:last-child {
+        width: 86px;
+    }
+
+    /* 코딩 */
+
+    .coding .container .box {
+        width: 25rem;
+    }
+
+    /* 브랜딩 */
+
+    .brand-slide,
+    .waggle-slide {
+        width: 90%;
+        height: 18rem;
+        position: relative;
+    }
+
+    .brand-slide .swiper-pagination {
+        right: 33%;
+        top: 14rem;
+        gap: 8px;
+        flex-direction: row;
+    }
+
+    .brand-slide .swiper-pagination-bullet,
+    .waggle-slide .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+    }
+
+    .brand-slide .swiper-pagination-bullet-active,
+    .waggle-slide .swiper-pagination-bullet-active {
+        width: 16px;
+        height: 8px;
+    }
+
+    .waggle-slide .swiper-pagination {
+        bottom: 5px;
+        left: 82%;
+        transform: translateX(-50%);
+    }
+
+    .swiper-slide a {
+        display: none;
+    }
+
+    #design {
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .container2 {
+        flex-wrap: wrap;
+    }
+
+    /* 모바일 1 */
+
+    /* 빨간띠 */
+    .red strong {
+        left: 38%;
+    }
+
+    /* 프로필페이지 */
+    .profile .face {
+        margin: 0 auto 15px;
+    }
+
+    .profile .face img {
+        margin-left: 30px;
+    }
+
+    .lic-inner {
+        display: block;
+    }
+
+    /*일러스트 */
+
+
+    .sunset img {
+        object-fit: cover;
+        width: 150%;
+
+    }
+
+    /* 프로젝트 카드 */
+    .content-card {
+        flex-direction: column;
+        margin: 0 auto;
+    }
+
+    .card-inner {
+        padding-top: 40px;
+        margin-bottom: 50px;
+    }
+
+    .content-card .card-inner span {
+        display: none;
+    }
+
+    .card-inner .tool {
+        margin-bottom: 0;
+    }
+
+    .gosite a {
+        padding: 6px 10px 8px;
+    }
+
+    /* 1-1 버튼 꼬리 */
+    .left-t {
+        top: 12px;
+    }
+
+    /* 1-2 버튼 꼬리 */
+    .gosite li:nth-child(2) .left-t {
+        top: 57px;
+    }
+
+    /* 2-3 버튼 꼬리 */
+    .gosite li:nth-child(3) .left-t {
+        top: 102px;
+    }
+
+    /* 3-2 버튼 꼬리 */
+    .content-card:nth-child(3) .gosite li:nth-child(3) .left-t {
+        top: 57px;
+    }
+
+    .gosite {
+        margin-top: 30px;
+    }
+
+    .myimg {
+        width: 100%;
+        height: 430px;
+        margin: 0 auto;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .gallery {
+        gap: 10px;
+    }
+
+    /* 팝업창 */
+    .mail-popup {
+        top: 200px;
+    }
+}
+
+@media screen and (max-width : 425px) {
+    .cursor {
+        display: none;
+    }
+}
